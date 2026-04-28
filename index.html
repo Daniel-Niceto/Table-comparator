@@ -7,6 +7,7 @@
     <title>Table comparator</title>
 
     <script src="./js/index.js" defer></script>
+    <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
@@ -36,18 +37,22 @@
         </tbody>
     </table> -->
 
-    <table class="Table-wrapper">
-        <thead>
-            <tr>
-                <th>Codigo 1</th>
-                <th>Descripcion 1</th>
-                <th>Unidades 1</th>
-                <th>Codigo 2</th>
-                <th>Descripcion 2</th>
-                <th>Unidades 2</th>
+    <table class="Table">
+        <thead class="Table-head Head">
+            <tr class="Head-row">
+                <th class="Head-data" colspan="3">Table 1</th>
+                <th class="Head-data" colspan="3">Table 2</th>
+            </tr>
+            <tr class="Head-row">
+                <th class="Head-data">Code table 1</th>
+                <th class="Head-data">Description table 1</th>
+                <th class="Head-data">Units table 1</th>
+                <th class="Head-data">Code table 2</th>
+                <th class="Head-data">Description table 2</th>
+                <th class="Head-data">Units table 2</th>
             </tr>
         </thead>
-        <tbody class="tablaBodyDOM">
+        <tbody class="Table-body Body">
         </tbody>
     </table>
 

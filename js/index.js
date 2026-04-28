@@ -3,26 +3,24 @@
 const buttonForm = document.querySelector(`.Button-form`)
 const textForms = document.querySelectorAll(`.Text-form`)
 
-const body = document.querySelector(`body`)
-const tableWrapper = document.querySelector(`.Table-wrapper`)
+// const body = document.querySelector(`body`)
+// const tableWrapper = document.querySelector(`.Table`)
+const tableBody = document.querySelector(`.Table-body`)
 
-// console.log(buttonForm)
-// console.log(textForm.innerHTML)
 
-let tablas = []
+
+let tables = []
 let combinedTables = []
 
+// Takes the data from the inputs, splits it at \n and \t
+// Creates an array of the tables, each table is an array of objects, each object is a row
 const handleButtonClick = () => {
     textForms.forEach((textForm) => {
-        let tabla = []
-        const tablaData = textForm.value.split(`\n`)
+        let table = []
+        const tableData = textForm.value.split(`\n`)
 
-        tablaData.forEach((row) => {
-            // let rows = []
-            // rows = row.split(`\t`)
-            // tabla = [...tabla, rows]
+        tableData.forEach((row) => {
 
-            // let rows = {}
             let x = []
             x = row.split(`\t`)
             const rows = {
@@ -30,29 +28,27 @@ const handleButtonClick = () => {
                 "description": `${x[1]}`,
                 "units": `${x[2]}`
             }
-            tabla = [...tabla, rows]
-
-            // console.log(tabla)
+            table = [...table, rows]
         })
         textForm.value = ""
-        tablas = [...tablas, tabla]
+        tables = [...tables, table]
     })
-
-    // console.log(tablas)
 }
 
+// Sorts each table acording to the code
 const sortTable = () => {
-    tablas.forEach((tabla) => {
-        tabla.sort((a, b) => a.code.localeCompare(b.code, undefined, { numeric: true, sensitivity: `base` }))
+    tables.forEach((table) => {
+        table.sort((a, b) => a.code.localeCompare(b.code, undefined, { numeric: true, sensitivity: `base` }))
     })
 }
 
+// Deletes invalid data from the tables
 const formatTable = () => {
-    tablas.forEach((tabla) => {
+    tables.forEach((table) => {
         let row = 0
-        while (row < tabla.length) {
-            if (tabla[row].code == "") {
-                tabla.splice(row, 1)
+        while (row < table.length) {
+            if (table[row].code == "") {
+                table.splice(row, 1)
             }
             row++
         }
@@ -60,10 +56,12 @@ const formatTable = () => {
     })
 }
 
+// Function that compares the codes from the tables
 const compareCodes = (codeTable_1, codeTable_2) => {
     return codeTable_1.localeCompare(codeTable_2, undefined, { numeric: true, sensitivity: `base` })
 }
 
+// Function that adds a row to the combinedTables array
 const addRow = (firstTable, secondTable) => {
     const newRow = {
         code_1: firstTable.code,
@@ -77,63 +75,73 @@ const addRow = (firstTable, secondTable) => {
     combinedTables.push(newRow)
 }
 
-const compareTable = (row) => {
+const compareTable = () => {
     let index_t1 = 0
     let index_t2 = 0
 
     while (true) {
+        if (index_t1 == tables[0].length && index_t2 == tables[1].length) {
+            return
+        } else if (index_t1 == tables[0].length){
+            while(index_t2 < tables[1].length){
+                addRow(rowMissing(),tables[1][index_t2])
 
-        const codeTable_1 = tablas[0][index_t1].code
-        const codeTable_2 = tablas[1][index_t2].code
+                index_t2++
+            }
+            return
+        }else if(index_t2 === tables[1].length){
+            while(index_t1 < tables[0].length){
+                addRow(tables[0][index_t1], rowMissing())
 
-        if (index_t1 == tablas[0].length - 1 || index_t2 == tablas[1].length - 1) {
+                index_t1++
+            }
             return
         }
 
+
+        const codeTable_1 = tables[0][index_t1].code
+        const codeTable_2 = tables[1][index_t2].code
+
         if (compareCodes(codeTable_1, codeTable_2) == 0) {
-            console.log(`son iguales`)
-            console.log(codeTable_1)
-            console.log(codeTable_2)
-            addRow(tablas[0][index_t1], tablas[1][index_t2])
+            addRow(tables[0][index_t1], tables[1][index_t2])
 
             index_t1++
             index_t2++
 
         } else if (compareCodes(codeTable_1, codeTable_2) < 0) {
-            console.log(`${codeTable_1} es menor que ${codeTable_2}`)
-            addRow(tablas[0][index_t1], rowMissing())
+            addRow(tables[0][index_t1], rowMissing())
 
             index_t1++
         } else {
-            console.log(`${codeTable_1} es mayor que ${codeTable_2}`)
-            addRow(rowMissing(), tablas[1][index_t2])
+            addRow(rowMissing(), tables[1][index_t2])
 
             index_t2++
         }
     }
 }
+
 const rowMissing = () => {
     return { "code": "missing", "description": "missing", "units": "missing" }
 }
 
 const printTable = () => {
 
-    const tablaBodyDOM = document.querySelector(`.tablaBodyDOM`)
+    const tableBody = document.querySelector(`.Table-body`)
 
     combinedTables.forEach((row) => {
 
-        const tablaRowDOM = document.createElement(`tr`)
+        const tableRow = document.createElement(`tr`)
 
-        tablaRowDOM.innerHTML = `
-                <td>${row.code_1}</td>
-                <td>${row.description_1}</td>
-                <td>${row.units_1}</td>
-                <td>${row.code_2}</td>
-                <td>${row.description_2}</td>
-                <td>${row.units_2}</td>
+        tableRow.innerHTML = `
+                <td class="Body-data">${row.code_1}</td>
+                <td class="Body-data">${row.description_1}</td>
+                <td class="Body-data">${row.units_1}</td>
+                <td class="Body-data">${row.code_2}</td>
+                <td class="Body-data">${row.description_2}</td>
+                <td class="Body-data">${row.units_2}</td>
             `
-            console.log(tablaRowDOM)
-        tablaBodyDOM.appendChild(tablaRowDOM)
+            // console.log(tableRow)
+        tableBody.appendChild(tableRow)
 
 
     })
@@ -142,32 +150,43 @@ const printTable = () => {
 const inputsAreEmpty = () =>{
     let empty = false
     textForms.forEach((textForm)=>{
-        if(textForm.value.length === 0 && tablas.length === 0){
+        if(textForm.value.length === 0 && tables.length === 0){
             empty = true
         }
     })
     return empty
 }
 
+const addStyles = () => {
+    const cells = document.querySelectorAll(`.Body-data`)
+    cells.forEach((cell)=>{
+        if(cell.innerHTML == "missing"){
+            console.log(cell)
+            cell.classList.add(`isMissing`)
+        }
+    })
+}
+
 buttonForm.addEventListener(`click`, ()=>{
 
-    // Coprueba que haya contenido en los inputs
-    // Sale si estan vacios
+    // Check that there is content in the inputs
+    // If the inputs are empty it returns
     if(inputsAreEmpty()){
         return
     }
 
-    const tablaBodyDOM = document.querySelector(`.tablaBodyDOM`)
-    tablaBodyDOM.innerHTML = ``
+    // Cleans the array and the table shown in the window
+    tableBody.innerHTML = ``
     combinedTables = []
+
 
     handleButtonClick()
     sortTable()
     formatTable()
 
-    // let row = 1
     compareTable()
     printTable()
+    addStyles()
 
-    console.log(combinedTables)
+    // console.log(combinedTables)
 })
