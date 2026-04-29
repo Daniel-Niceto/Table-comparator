@@ -6,26 +6,55 @@
     margin: 0 auto;
     /* background-color: red; */
 
-    border: 1px solid black;
+    /* border: 2px solid black; */
+    /* border-collapse: collapse; */
+    border-spacing: 0px 5px;
 }
 .Table-head{
     background-color: rgb(192, 230, 240);
+    /* border: 1px solid black; */
 }
 .Head{}
 .Head-row{}
 .Head-data{
     padding: .5rem;
+
+    /* border: 1px solid black; */
 }
 .Table-body{}
 
+.Body-row{
+    border-radius: .5rem;
+    background-color: rgb(215, 255, 215);
+    padding: .5rem 0 ;
+}
+
+.Body-row.isMissing{
+    background-color: rgb(233, 136, 136);
+    color: rgb(129, 13, 13);
+}
 .Body-data{
     /* border-collapse: collapse; */
     /* border: 1px solid black; */
+
+    /* background-color: rgb(214, 248, 248); */
+    /* border-radius: 1rem; */
+    border: 5px solid transparent;
 }
 
+.Body-data:first-child{
+    border-radius: .5rem 0 0 .5rem;
+}
+.Body-data:last-child{
+    border-radius: 0 .5rem .5rem 0;
+}
+
+.Body-data.notMatching{
+    background-color: yellow;
+}
+
+/*
 .Body-data.isMissing{
     background-color: rgb(248, 185, 185);
-    color: rgb(160, 15, 15);
-
-    
-}
+    color: rgb(160, 15, 15); 
+}*/
