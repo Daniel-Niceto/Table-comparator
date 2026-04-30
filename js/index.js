@@ -1,7 +1,7 @@
 'use strict'
 
-const buttonForm = document.querySelector(`.Button-form`)
-const textForms = document.querySelectorAll(`.Text-form`)
+const buttonForm = document.querySelector(`.Inputs-button`)
+const textForms = document.querySelectorAll(`.Inputs-textarea`)
 
 // const body = document.querySelector(`body`)
 // const tableWrapper = document.querySelector(`.Table`)
@@ -129,7 +129,7 @@ const printTable = () => {
         <tr class="Head-row">
             <th class="Head-data">Code table 1</th>
             <th class="Head-data">Description table 1</th>
-            <th class="Head-data">Units table 1</th>
+            <th class="Head-data Head-units">Units table 1</th>
             <th class="Head-data">Code table 2</th>
             <th class="Head-data">Description table 2</th>
             <th class="Head-data">Units table 2</th>
@@ -147,12 +147,12 @@ const printTable = () => {
         tableRow.classList.add(`Body-row`)
 
         tableRow.innerHTML = `
-                <td class="Body-data">${row.code_1}</td>
+                <td class="Body-data Body-code">${row.code_1}</td>
                 <td class="Body-data">${row.description_1}</td>
-                <td class="Body-data">${row.units_1}</td>
-                <td class="Body-data">${row.code_2}</td>
+                <td class="Body-data Body-units Body-units--first">${row.units_1}</td>
+                <td class="Body-data Body-code">${row.code_2}</td>
                 <td class="Body-data">${row.description_2}</td>
-                <td class="Body-data">${row.units_2}</td>
+                <td class="Body-data Body-units">${row.units_2}</td>
             `
         tableBody.appendChild(tableRow)
     })
