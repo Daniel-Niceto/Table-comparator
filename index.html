@@ -14,44 +14,35 @@
 
 <body>
 
-    <header>
-
+    <header class="Header">
+        <h1 class="Header-h1">Comparador de tablas</h1>
     </header>
     <main>
-
-        <div class="Title">
-            <h1 class="Title-h1">Table comparator</h1>
-        </div>
+        <!-- <section class="Section Instructions">
+            <h2 class="Instructions-h2">¿Como funciona?</h2>
+            <p class="Instructions-p">
+                Para que funcione correctamente los datos introducidos tienen que tener el formtato:
+                - Codigo    - Descripción   - Unidades
+            </p>
+            <p class="Instructions-p">
+                <ul class="Instructions-ul">
+                    <li class="Instructions-li">Primero se ordena cada tabla según la primera columna (código)</li>
+                    <li class="Instructions-li">Luego se eliminan valores invalidos (datos vacios...)</li>
+                    <li class="Instructions-li">A continuacion, se comparan las tablas. Si los codigos coinciden se mantienen a la misma altura. Si no coinciden, el que sea menor se muestra antes y el mayor se muestra despues.</li>
+                </ul>
+            </p>
+        </section> -->
 
         <div class="Inputs">
             <div class="Inputs-textareas">
-                <textarea class="Inputs-textarea" name="comentarios" rows="4" cols="50" placeholder="Enter the first table"></textarea>
-                <textarea class="Inputs-textarea" name="comentarios" rows="4" cols="50" placeholder="Enter the second table"></textarea>
+                <textarea class="Inputs-textarea" rows="4" cols="50" placeholder="Introduce la primera tabla"></textarea>
+                <textarea class="Inputs-textarea" rows="4" cols="50" placeholder="Introduce la segunda tabla"></textarea>
             </div>
-            <button class="Inputs-button"> Comparar tablas </button>
+            <div class="Inputs-buttons">
+                <button class="Inputs-button Clear"> Limpiar </button>
+                <button class="Inputs-button Compare"> Comparar </button>
+            </div>
         </div>
-
-
-
-        <!-- <table class="Table">
-            <thead class="Table-head Head">
-                <tr class="Head-row">
-                    <th class="Head-data" colspan="3">Table 1</th>
-                    <th class="Head-data" colspan="3">Table 2</th>
-                </tr>
-                <tr class="Head-row">
-                    <th class="Head-data">Code table 1</th>
-                    <th class="Head-data">Description table 1</th>
-                    <th class="Head-data">Units table 1</th>
-                    <th class="Head-data">Code table 2</th>
-                    <th class="Head-data">Description table 2</th>
-                    <th class="Head-data">Units table 2</th>
-                </tr>
-            </thead>
-            <tbody class="Table-body Body">
-            </tbody>
-        </table> -->
-
     </main>
 </body>
 

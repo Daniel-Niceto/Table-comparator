@@ -1,11 +1,8 @@
 'use strict'
 
-const buttonForm = document.querySelector(`.Inputs-button`)
+const buttonForm = document.querySelector(`.Compare`)
 const textForms = document.querySelectorAll(`.Inputs-textarea`)
-
-// const body = document.querySelector(`body`)
-// const tableWrapper = document.querySelector(`.Table`)
-// const table = document.querySelector(`.Table`)
+const clearButton = document.querySelector(`.Clear`)
 
 
 
@@ -187,10 +184,24 @@ const addStyles = () => {
 const checkUnits = () => {
     const rows = document.querySelectorAll(`.Body-row`)
     rows.forEach((row)=>{
-        if(row.children[2].innerHTML != row.children[5].innerHTML){
+        if(!row.classList.contains(`isMissing`) && row.children[2].innerHTML != row.children[5].innerHTML){
             row.children[2].classList.add(`notMatching`)
             row.children[5].classList.add(`notMatching`)
         }
+    })
+}
+
+const handleClear= () => {
+    tables = []
+    combinedTables = []
+
+    const table = document.querySelector(`.Table`)
+    if (table) {
+        table.remove()
+    }
+
+    textForms.forEach((textForm)=>{
+        textForm.value = ""
     })
 }
 
@@ -204,9 +215,15 @@ buttonForm.addEventListener(`click`, () => {
 
     // Cleans the array and the table shown in the window
     const table = document.querySelector(`.Table`)
+    // console.log(table)
+    
     if (table) {
-        table.innerHTML = ``
+        console.log(table)
+        // table.innerHTML = ``
+
+        table.remove()
     }
+
     tables = []
     combinedTables = []
 
@@ -217,7 +234,14 @@ buttonForm.addEventListener(`click`, () => {
     compareTable()
     printTable()
     addStyles()
+    checkUnits()
 
     tables = []
     combinedTables = []
 })
+
+
+
+clearButton.addEventListener(`click`, ()=> handleClear())
+
+

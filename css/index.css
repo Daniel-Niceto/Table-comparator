@@ -3,21 +3,25 @@
 }
 
 /* 
- * Title
+ * Header
  */
-.Title{
+.Header{
     width: 100%;
     height: fit-content;
     padding: 2rem 0;
+    margin: 0 0 2rem;
     /* background-color: yellow; */
+
+    background-color: rgb(170, 226, 170);
 }
-.Title-h1{
+.Header-h1{
     text-align: center;
     font-size: 2rem;
     font-weight: 700;
+    color: rgb(11, 75, 14);
 }
 /* 
- * Title
+ * Header
  */
 
 
@@ -50,24 +54,52 @@
     width: 20rem;
     height: 5rem;
     border-radius: 1rem;
-    border: 1px solid black;
-    background-color: aqua;
+    /* border: 1px solid rgb(5, 65, 145); */
+    background-color: rgb(187, 243, 243);
 }
 .Inputs-textarea::placeholder{
     /* margin: 5rem; */
     padding: 1rem 0 0 .5rem;
 
-    color: grey;
+    color: rgb(70, 67, 67);
 
     /* background-color: red; */
+}
+.Inputs-buttons{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: start;
+    align-items: start;
+    gap: 2rem;
 }
 .Inputs-button{
     width: fit-content;
     height: fit-content;
-    padding: 1rem 3rem;
-    border: 1px solid black;
+    padding: .8rem 2rem;
     border-radius: 1rem;
-    background-color: lightgreen;
+    
+}
+
+.Compare{
+    background-color: rgb(176, 228, 176);
+    border: 2px solid rgb(176, 228, 176);
+    color: black;
+    font-weight: 600;
+
+    transition: background-color .5s ease, border .5s ease, color .5s ease;
+}
+.Clear{
+    background-color: rgb(247, 247, 247);
+    border: 2px solid rgb(11, 82, 11);
+    color: black;
+
+    transition: background-color .5s ease, border .5s ease, color .5s ease;
+}
+
+.Inputs-button:hover{
+    background-color: rgb(41, 107, 61);
+    border: 2px solid rgb(41, 107, 61);
+    color: white;
 }
 
 /* 
